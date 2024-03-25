@@ -1,0 +1,15 @@
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Application/bin/Debug/net7.0/Application.deps.json
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Application/bin/Debug/net7.0/Application.dll
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Application/bin/Debug/net7.0/Application.pdb
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Application/bin/Debug/net7.0/Domain.dll
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Application/bin/Debug/net7.0/Domain.pdb
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Application/obj/Debug/net7.0/Application.csproj.AssemblyReference.cache
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Application/obj/Debug/net7.0/Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Application/obj/Debug/net7.0/Application.AssemblyInfoInputs.cache
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Application/obj/Debug/net7.0/Application.AssemblyInfo.cs
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Application/obj/Debug/net7.0/Application.csproj.CoreCompileInputs.cache
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Application/obj/Debug/net7.0/Application.csproj.CopyComplete
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Application/obj/Debug/net7.0/Application.dll
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Application/obj/Debug/net7.0/refint/Application.dll
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Application/obj/Debug/net7.0/Application.pdb
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Application/obj/Debug/net7.0/ref/Application.dll

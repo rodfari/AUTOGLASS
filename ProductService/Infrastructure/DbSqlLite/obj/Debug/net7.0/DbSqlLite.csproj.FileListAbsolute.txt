@@ -1,0 +1,17 @@
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Infrastructure/DbSqlLite/bin/Debug/net7.0/DbSqlLite.deps.json
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Infrastructure/DbSqlLite/bin/Debug/net7.0/DbSqlLite.runtimeconfig.json
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Infrastructure/DbSqlLite/bin/Debug/net7.0/DbSqlLite.dll
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Infrastructure/DbSqlLite/bin/Debug/net7.0/DbSqlLite.pdb
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Infrastructure/DbSqlLite/bin/Debug/net7.0/Domain.dll
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Infrastructure/DbSqlLite/bin/Debug/net7.0/Domain.pdb
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Infrastructure/DbSqlLite/obj/Debug/net7.0/DbSqlLite.csproj.AssemblyReference.cache
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Infrastructure/DbSqlLite/obj/Debug/net7.0/DbSqlLite.GeneratedMSBuildEditorConfig.editorconfig
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Infrastructure/DbSqlLite/obj/Debug/net7.0/DbSqlLite.AssemblyInfoInputs.cache
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Infrastructure/DbSqlLite/obj/Debug/net7.0/DbSqlLite.AssemblyInfo.cs
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Infrastructure/DbSqlLite/obj/Debug/net7.0/DbSqlLite.csproj.CoreCompileInputs.cache
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Infrastructure/DbSqlLite/obj/Debug/net7.0/DbSqlLite.csproj.CopyComplete
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Infrastructure/DbSqlLite/obj/Debug/net7.0/DbSqlLite.dll
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Infrastructure/DbSqlLite/obj/Debug/net7.0/refint/DbSqlLite.dll
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Infrastructure/DbSqlLite/obj/Debug/net7.0/DbSqlLite.pdb
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Infrastructure/DbSqlLite/obj/Debug/net7.0/DbSqlLite.genruntimeconfig.cache
+/Users/rodrigofarias/Code/LAB/TESTES-VAGAS/AUTOGLASS/ProductService/Infrastructure/DbSqlLite/obj/Debug/net7.0/ref/DbSqlLite.dll
