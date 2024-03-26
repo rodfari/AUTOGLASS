@@ -27,10 +27,10 @@ public class ProdutoController : ControllerBase
 
     
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<ProdutoResponseVM>> Get(int id)
+    [HttpGet("{codigoProduto}")]
+    public async Task<ActionResult<ProdutoResponseVM>> Get(int codigoProduto)
     {
-        var prod = await produtoManager.GetByIdAsync(id);
+        var prod = await produtoManager.GetByIdAsync(codigoProduto);
         if (!prod.Success)
         {
             return NotFound(new { Messsge = prod.Message });
@@ -41,17 +41,18 @@ public class ProdutoController : ControllerBase
 
 
 
-    [HttpGet]
+    [HttpGet("filtrar")]
     public async Task<ActionResult<List<ProdutoResponseVM>>> Filtrar(
-        string cnpj, int page = 0, int amount = 10, string situacao = "ATIVO")
+        string cnpj, int page = 1, int amount = 10, string situacao = "ATIVO")
     {   
 
         var list = await produtoManager
             .GetAllAsync(
                 x => x.Situacao.Equals(situacao) 
+                && string.IsNullOrEmpty(cnpj) 
+                || (x.Situacao.Equals(situacao) 
                 && !string.IsNullOrEmpty(cnpj)
-                && x.CnpjFornecedor.Contains(cnpj) 
-                || string.IsNullOrEmpty(cnpj), 
+                && x.CnpjFornecedor.Contains(cnpj)), 
                 page, amount);
 
         var res = mapper.Map<List<ProdutoRequestVM>>(list.ListProdutoDTO);

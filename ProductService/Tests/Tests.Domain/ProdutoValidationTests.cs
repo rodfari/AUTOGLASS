@@ -40,6 +40,7 @@ public class ProdutoValidationTests
             Assert.True(!string.IsNullOrEmpty(ex.Message));
         }
     }
+    
     [Fact]
     public void ValidaTipoDeExcecaoQuandoDescricaoNaoPreenchida()
     {

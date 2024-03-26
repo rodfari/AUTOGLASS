@@ -53,7 +53,7 @@ public class ProdutoRepository : IProdutoRepository
         int currentPage, int amount)
     {
         var query = dbContext.Produtos.Where(expression)
-        .Skip(currentPage * amount).Take(amount);
+        .Skip(currentPage < 2 ? 0 : currentPage * amount).Take(amount);
         return await query.ToListAsync();
     }
 

@@ -62,20 +62,15 @@ public class ProdutoManager : IProdutoManager
         };
     }
     
-    public async Task<ProdutoResponse> GetAllAsync()
-    {
-        var produtos = await repository.GetAllAsync();
-        var produtosDTO = mapper.Map<List<ProdutoDTO>>(produtos);
-        return new ProdutoResponse
-        {
-            Success = true,
-            ListProdutoDTO = produtosDTO
-        };
-    }
-
-    // public async Task<List<ProdutoResponse>> FiltrarProduto(Expression<Func<Produto, bool>> expression){
-    //     repository.FiltrarProdutos()
-    //         .Where(expression)
+    // public async Task<ProdutoResponse> GetAllAsync()
+    // {
+    //     var produtos = await repository.GetAllAsync();
+    //     var produtosDTO = mapper.Map<List<ProdutoDTO>>(produtos);
+    //     return new ProdutoResponse
+    //     {
+    //         Success = true,
+    //         ListProdutoDTO = produtosDTO
+    //     };
     // }
     public async Task<ProdutoResponse> GetAllAsync(Expression<Func<Produto, bool>> expression, int currentPage, int amount)
     {
