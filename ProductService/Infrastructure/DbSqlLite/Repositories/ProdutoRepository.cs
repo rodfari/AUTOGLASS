@@ -2,17 +2,14 @@ using System.Linq.Expressions;
 using Domain.Entities;
 using Domain.Exceptions;
 using Domain.Ports;
+using Domain.Structures;
 using Microsoft.EntityFrameworkCore;
 
 namespace DbSqlLite.Repositories;
 
 public class ProdutoRepository : IProdutoRepository
 {
-    struct Situacao
-    {
-        public static string ATIVO => "ATIVO";
-        public static string INATIVO => "INATIVO";
-    }
+
     public ProdutoDbContext dbContext { get; set; }
     public ProdutoRepository(ProdutoDbContext dbContext)
     {
@@ -20,25 +17,25 @@ public class ProdutoRepository : IProdutoRepository
     }
     public async Task<bool> CreateOrUpdateAsync(Produto produto)
     {
-            if (produto.CodigoProduto == 0)
-            {
-                produto.Situacao = Situacao.ATIVO;
-                produto.Validate();
-                dbContext.Add(produto);
-                await dbContext.SaveChangesAsync();
-                return true;
-            }
+        if (produto.CodigoProduto == 0)
+        {
+            produto.Situacao = ProdutoSituacao.ATIVO;
             produto.Validate();
-            dbContext.Entry(produto).State = EntityState.Modified;
+            dbContext.Add(produto);
             await dbContext.SaveChangesAsync();
             return true;
+        }
+        produto.Validate();
+        dbContext.Entry(produto).State = EntityState.Modified;
+        await dbContext.SaveChangesAsync();
+        return true;
     }
     public async Task<bool> DeleteAsync(int CodigoProduto)
     {
         try
         {
             var prod = await dbContext.Produtos.FirstAsync(x => x.CodigoProduto.Equals(CodigoProduto));
-            prod.Situacao = Situacao.INATIVO;
+            prod.Situacao = ProdutoSituacao.INATIVO;
             await dbContext.SaveChangesAsync();
             return true;
         }
@@ -48,6 +45,17 @@ public class ProdutoRepository : IProdutoRepository
         }
     }
     public async Task<List<Produto>> GetAllAsync() => await dbContext.Produtos.ToListAsync();
+
+    public IQueryable<Produto> FiltrarProdutos() => dbContext.Produtos.AsQueryable();
+
+    public async Task<List<Produto>> GetAllAsync(
+        Expression<Func<Produto, bool>> expression,
+        int currentPage, int amount)
+    {
+        var query = dbContext.Produtos.Where(expression)
+        .Skip(currentPage * amount).Take(amount);
+        return await query.ToListAsync();
+    }
 
     public async Task<Produto> GetByIdAsync(int CodigoProduto)
     {

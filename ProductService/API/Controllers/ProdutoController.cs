@@ -39,10 +39,21 @@ public class ProdutoController : ControllerBase
         return Ok(res);
     }
 
+
+
     [HttpGet]
-    public async Task<ActionResult<List<ProdutoResponseVM>>> Get()
-    {
-        var list = await produtoManager.GetAllAsync();
+    public async Task<ActionResult<List<ProdutoResponseVM>>> Filtrar(
+        string cnpj, int page = 0, int amount = 10, string situacao = "ATIVO")
+    {   
+
+        var list = await produtoManager
+            .GetAllAsync(
+                x => x.Situacao.Equals(situacao) 
+                && !string.IsNullOrEmpty(cnpj)
+                && x.CnpjFornecedor.Contains(cnpj) 
+                || string.IsNullOrEmpty(cnpj), 
+                page, amount);
+
         var res = mapper.Map<List<ProdutoRequestVM>>(list.ListProdutoDTO);
         return Ok(res);
     }
@@ -58,8 +69,10 @@ public class ProdutoController : ControllerBase
         
         if (res.Success)
         {
-            var result = new ObjectResult("Produto criado com seucesso");
-            result.StatusCode = (int)HttpStatusCode.Created;
+            var result = new ObjectResult("Produto criado com seucesso")
+            {
+                StatusCode = (int)HttpStatusCode.Created
+            };
             return result;
         }
         return BadRequest(res.Message);

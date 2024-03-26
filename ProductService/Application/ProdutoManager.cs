@@ -61,9 +61,25 @@ public class ProdutoManager : IProdutoManager
             Message = saved == true ? "" : "Não foi possível excluir o produto."
         };
     }
+    
     public async Task<ProdutoResponse> GetAllAsync()
     {
         var produtos = await repository.GetAllAsync();
+        var produtosDTO = mapper.Map<List<ProdutoDTO>>(produtos);
+        return new ProdutoResponse
+        {
+            Success = true,
+            ListProdutoDTO = produtosDTO
+        };
+    }
+
+    // public async Task<List<ProdutoResponse>> FiltrarProduto(Expression<Func<Produto, bool>> expression){
+    //     repository.FiltrarProdutos()
+    //         .Where(expression)
+    // }
+    public async Task<ProdutoResponse> GetAllAsync(Expression<Func<Produto, bool>> expression, int currentPage, int amount)
+    {
+        var produtos = await repository.GetAllAsync(expression, currentPage, amount);
         var produtosDTO = mapper.Map<List<ProdutoDTO>>(produtos);
         return new ProdutoResponse
         {

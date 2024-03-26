@@ -30,7 +30,7 @@ public class ProdutoManagerTests
 
         var fakeRepo = new Mock<IProdutoRepository>();
         fakeRepo.Setup(x => x.CreateOrUpdateAsync(produto))
-           .Returns(Task.FromResult(1));
+           .Returns(Task.FromResult(true));
         var config = new MapperConfiguration(cfg => cfg.CreateMap<ProdutoDTO, Produto>().ReverseMap());
         var map = config.CreateMapper();
         // When
@@ -105,7 +105,7 @@ public class ProdutoManagerTests
     {
         // Given
         var fakeRepo = new Mock<IProdutoRepository>();
-        fakeRepo.Setup(x => x.DeleteAsync(4)).Returns(Task.FromResult(1));
+        fakeRepo.Setup(x => x.DeleteAsync(4)).Returns(Task.FromResult(true));
         var config = new MapperConfiguration(cfg => cfg.CreateMap<ProdutoDTO, Produto>().ReverseMap());
         var map = config.CreateMapper();
         // When
