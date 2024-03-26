@@ -2,9 +2,10 @@ Desafio prático de Programação - Autoglass
 O que desenvolver?
 /***********----------**********/
 Você irá criar API para a gestão de produtos, com os seguintes recursos:
-•	Recuperar um registro por código;
+•	Recuperar um registro por código; --- ok
 •	Listar registros 
  	Filtrando a partir de parâmetros e paginando a resposta
+	
 •	Inserir 
 Criar validação para o campo data de fabricação que não poderá ser maior ou igual a data de validade.  ---> OK
 

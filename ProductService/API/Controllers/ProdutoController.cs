@@ -1,6 +1,9 @@
+using System.Net;
+using API.ViewModels.ProdutoVM;
 using Application.DTO;
 using Application.Ports;
 using Application.Requests;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -10,46 +13,85 @@ public class ProdutoController : ControllerBase
 {
     private readonly ILogger<ProdutoController> logger;
     private readonly IProdutoManager produtoManager;
+    private readonly IMapper mapper;
 
     public ProdutoController(
             ILogger<ProdutoController> logger,
-            IProdutoManager produtoManager)
+            IProdutoManager produtoManager,
+            IMapper mapper)
     {
         this.logger = logger;
         this.produtoManager = produtoManager;
+        this.mapper = mapper;
     }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult> Get(int id)
-    {
+    
 
-        return Ok();
+    [HttpGet("{id}")]
+    public async Task<ActionResult<ProdutoResponseVM>> Get(int id)
+    {
+        var prod = await produtoManager.GetByIdAsync(id);
+        if (!prod.Success)
+        {
+            return NotFound(new { Messsge = prod.Message });
+        }
+        var res = mapper.Map<ProdutoResponseVM>(prod.ProdutoDTO);
+        return Ok(res);
     }
 
     [HttpGet]
-    public async Task<ActionResult> Get()
+    public async Task<ActionResult<List<ProdutoResponseVM>>> Get()
     {
         var list = await produtoManager.GetAllAsync();
-        return Ok(list.ListProdutoDTO);
+        var res = mapper.Map<List<ProdutoRequestVM>>(list.ListProdutoDTO);
+        return Ok(res);
     }
 
     [HttpPost]
-    public async Task<ActionResult> Post()
+    public async Task<ActionResult> Post(ProdutoRequestVM requestVM)
     {
         ProdutoRequest request = new()
         {
-            ProdutoDTO = new ProdutoDTO
-            {
-                CnpjFornecedor = "84326487234",
-                CodigoFornecedor = "1232143",
-                CodigoProduto = 2,
-                DataFabricacao = DateTime.Now.AddDays(-10),
-                DataValidade = DateTime.Now,
-                Descricao = "DESCRICAO"
-            }
+            ProdutoDTO = mapper.Map<ProdutoDTO>(requestVM)
         };
+        var res = await produtoManager.CreateAsync(request);
+        
+        if (res.Success)
+        {
+            var result = new ObjectResult("Produto criado com seucesso");
+            result.StatusCode = (int)HttpStatusCode.Created;
+            return result;
+        }
+        return BadRequest(res.Message);
+    }
 
-        await produtoManager.CreateAsync(request);
-        return Ok();
+    [HttpPut]
+    public async Task<ActionResult> Put(ProdutoRequestVM requestVM)
+    {
+        ProdutoRequest request = new()
+        {
+            ProdutoDTO = mapper.Map<ProdutoDTO>(requestVM)
+        };
+        var res = await produtoManager.CreateAsync(request);
+        
+        if (res.Success)
+        {
+            var result = new ObjectResult("Atualizacao realizada!");
+            result.StatusCode = 201;
+            return result;
+        }
+        return BadRequest(res.Message);
+    }
+
+
+    [HttpDelete("{codigoProduto}")]
+    public async Task<ActionResult> Delete(int codigoProduto)
+    {
+        var res = await produtoManager.DeleteAsync(codigoProduto);
+        if (res.Success)
+        {
+            return Ok("Produto excluido com sucesso!");
+        }
+        return BadRequest(res.Message);
     }
 }

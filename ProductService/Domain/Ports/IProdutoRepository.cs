@@ -7,7 +7,7 @@ public interface IProdutoRepository
 {
     Task<Produto> GetByIdAsync(int CodigoProduto);
     Task<List<Produto>> GetAllAsync();
-    Task<int> CreateOrUpdateAsync(Produto produto);
-    Task<int> DeleteAsync(int CodigoProduto);
+    Task<bool> CreateOrUpdateAsync(Produto produto);
+    Task<bool> DeleteAsync(int CodigoProduto);
 
 }

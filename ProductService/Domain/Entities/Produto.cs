@@ -14,11 +14,14 @@ public class Produto
     public void Validate(){
         if (DataValidade <= DataFabricacao)
         {
-            throw new ExpireDateException("A data de fabricação não pode ser superior ou igual a data de vencimento");
+            throw new ExpireDateException("A data de fabricação não pode ser superior ou igual a data de vencimento.");
         }
         if(string.IsNullOrEmpty(Descricao))
         {
-            throw new NotNullOrEmptyStringException("A descrição do produto deve contem um valor");
+            throw new NotNullOrEmptyStringException("A descrição do produto deve contem um valor.");
+        }
+        if(string.IsNullOrEmpty(Situacao)){
+            throw new NotNullOrEmptyStringException("O Campo Situacao do produto deve ser preenchido.");
         }
     }
 }
