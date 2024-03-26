@@ -86,12 +86,12 @@ public class ProdutoController : ControllerBase
         {
             ProdutoDTO = mapper.Map<ProdutoDTO>(requestVM)
         };
-        var res = await produtoManager.CreateAsync(request);
+        var res = await produtoManager.UpdateAsync(request);
         
         if (res.Success)
         {
             var result = new ObjectResult("Atualizacao realizada!");
-            result.StatusCode = 201;
+            result.StatusCode = 200;
             return result;
         }
         return BadRequest(res.Message);

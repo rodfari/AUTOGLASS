@@ -20,10 +20,47 @@ public class ProdutoManager : IProdutoManager
         this.repository = repository;
         this.mapper = mapper;
     }
+
     public async Task<ProdutoResponse> CreateAsync(ProdutoRequest request)
     {
         try
         {
+
+            Produto produto = mapper.Map<Produto>(request.ProdutoDTO);
+            await repository.CreateOrUpdateAsync(produto);
+            return new ProdutoResponse
+            {
+                Success = true,
+            };
+        }
+        catch (ExpireDateException ex)
+        {
+            return new ProdutoResponse
+            {
+                Success = false,
+                ErrorCode = Domain.Enums.ErrorsCode.DATE_EXCEPTION,
+                Message = ex.Message
+            };
+        }catch (NotNullOrEmptyStringException ex)
+        {
+            return new ProdutoResponse
+            {
+                Success = false,
+                ErrorCode = Domain.Enums.ErrorsCode.EMPTY_STRING,
+                Message = ex.Message
+            };
+        }
+
+    }
+    public async Task<ProdutoResponse> UpdateAsync(ProdutoRequest request)
+    {
+        try
+        {
+            if(request.ProdutoDTO.CodigoProduto == 0) 
+                return new ProdutoResponse{
+                    Success = false,
+                    Message = "É necessário informar o código do produto."
+                };
 
             Produto produto = mapper.Map<Produto>(request.ProdutoDTO);
             await repository.CreateOrUpdateAsync(produto);
@@ -61,17 +98,6 @@ public class ProdutoManager : IProdutoManager
             Message = saved == true ? "" : "Não foi possível excluir o produto."
         };
     }
-    
-    // public async Task<ProdutoResponse> GetAllAsync()
-    // {
-    //     var produtos = await repository.GetAllAsync();
-    //     var produtosDTO = mapper.Map<List<ProdutoDTO>>(produtos);
-    //     return new ProdutoResponse
-    //     {
-    //         Success = true,
-    //         ListProdutoDTO = produtosDTO
-    //     };
-    // }
     public async Task<ProdutoResponse> GetAllAsync(Expression<Func<Produto, bool>> expression, int currentPage, int amount)
     {
         var produtos = await repository.GetAllAsync(expression, currentPage, amount);
